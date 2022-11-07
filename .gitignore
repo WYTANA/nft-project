@@ -1,4 +1,6 @@
 node_modules
+notes.txt
+issue.jpg
 .env
 coverage
 coverage.json
