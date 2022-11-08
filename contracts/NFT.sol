@@ -28,6 +28,7 @@ contract NFT is ERC721Enumerable, Ownable {
     }
 
     event Mint(uint256 amount, address minter);
+    event Withdraw(uint256 amount, address owner);
 
     // Mint multiple NFTs
     function mint(uint256 _mintAmount) public payable {
@@ -84,11 +85,20 @@ contract NFT is ERC721Enumerable, Ownable {
         return tokenIds;
     }
 
+    // OWNER FUNCTIONS
+
     // Withdraw contract balance to owner's address
     function withdraw() public onlyOwner {
         uint256 balance = address(this).balance;
 
         (bool success, ) = payable(msg.sender).call{value: balance}("");
         require(success);
+
+        // Emit event
+        emit Withdraw(balance, msg.sender);
+    }
+
+    function setCost(uint256 _newCost) public onlyOwner {
+        cost = _newCost;
     }
 }

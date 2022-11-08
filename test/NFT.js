@@ -260,13 +260,21 @@ describe("NFT", () => {
         expect(await ethers.provider.getBalance(nft.address)).to.equal(0)
       })
 
-      it("", async () => {})
+      it("sends funds to the owner", async () => {
+        expect(
+          await ethers.provider.getBalance(deployer.address)
+        ).to.be.greaterThan(balanceBefore)
+      })
 
-      it("", async () => {})
+      it("emits a withdraw event", async () => {
+        expect(transaction)
+          .to.emit(nft, "Withdraw")
+          .withArgs(COST, deployer.address)
+      })
     })
 
     describe("Fails", async () => {
-      it("by rejecting insufficient payment", async () => {
+      it("by rejecting non-owner withdrawal", async () => {
         const ALLOW_MINTING_ON = Date.now().toString().slice(0, 10)
         const NFT = await ethers.getContractFactory("NFT")
         nft = await NFT.deploy(
@@ -277,9 +285,9 @@ describe("NFT", () => {
           ALLOW_MINTING_ON,
           BASE_URI
         )
+        nft.connect(minter).mint(1, { value: COST })
 
-        await expect(nft.connect(minter).mint(1, { value: ether(1) })).to.be
-          .reverted
+        await expect(nft.connect(minter).withdraw()).to.be.reverted
       })
 
       it("by requiring minting of at least one token", async () => {
