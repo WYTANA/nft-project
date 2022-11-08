@@ -8,13 +8,13 @@ const tokens = (n) => {
 const ether = tokens
 
 describe("NFT", () => {
-  const NAME = "Travis NFT"
-  const SYMBOL = "TLO"
+  const NAME = "Feaux Punks"
+  const SYMBOL = "FAKE"
   const COST = ether(10)
   const MAX_SUPPLY = 25
   const BASE_URI = "ipfs://QmQ2jnDYecFhrf3asEWjyjZRX1pZSsNWG3qHzmNDvXa9qg/"
 
-  let nft, accounts, deployer, minter, receiver, exchange
+  let nft, accounts, deployer, minter
 
   beforeEach(async () => {
     accounts = await ethers.getSigners()

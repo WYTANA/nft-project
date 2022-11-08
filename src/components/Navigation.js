@@ -1,10 +1,10 @@
-import Navbar from 'react-bootstrap/Navbar';
+import Navbar from "react-bootstrap/Navbar"
 
-import logo from '../logo.png';
+import logo from "../logo.png"
 
 const Navigation = ({ account }) => {
   return (
-    <Navbar className='my-3'>
+    <Navbar className="my-3">
       <img
         alt="logo"
         src={logo}
@@ -12,14 +12,12 @@ const Navigation = ({ account }) => {
         height="40"
         className="d-inline-block align-top mx-3"
       />
-      <Navbar.Brand href="#">Dapp University Template</Navbar.Brand>
+      <Navbar.Brand href="#">Feaux Punks for Test Ether</Navbar.Brand>
       <Navbar.Collapse className="justify-content-end">
-        <Navbar.Text>
-          {account}
-        </Navbar.Text>
+        <Navbar.Text>{account}</Navbar.Text>
       </Navbar.Collapse>
     </Navbar>
-  );
+  )
 }
 
-export default Navigation;
+export default Navigation
