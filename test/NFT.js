@@ -230,4 +230,73 @@ describe("NFT", () => {
       expect(tokenIds[2].toString()).to.equal("3")
     })
   })
+
+  describe("Withdraw", () => {
+    describe("Successfully", async () => {
+      let transaction, result, balanceBefore
+
+      const ALLOW_MINTING_ON = Date.now().toString().slice(0, 10)
+      beforeEach(async () => {
+        const NFT = await ethers.getContractFactory("NFT")
+        nft = await NFT.deploy(
+          NAME,
+          SYMBOL,
+          COST,
+          MAX_SUPPLY,
+          ALLOW_MINTING_ON,
+          BASE_URI
+        )
+
+        transaction = await nft.connect(minter).mint(1, { value: COST })
+        result = await transaction.wait()
+
+        balanceBefore = await ethers.provider.getBalance(deployer.address)
+
+        transaction = await nft.connect(deployer).withdraw()
+        result = await transaction.wait()
+      })
+
+      it("deducts contract balance", async () => {
+        expect(await ethers.provider.getBalance(nft.address)).to.equal(0)
+      })
+
+      it("", async () => {})
+
+      it("", async () => {})
+    })
+
+    describe("Fails", async () => {
+      it("by rejecting insufficient payment", async () => {
+        const ALLOW_MINTING_ON = Date.now().toString().slice(0, 10)
+        const NFT = await ethers.getContractFactory("NFT")
+        nft = await NFT.deploy(
+          NAME,
+          SYMBOL,
+          COST,
+          MAX_SUPPLY,
+          ALLOW_MINTING_ON,
+          BASE_URI
+        )
+
+        await expect(nft.connect(minter).mint(1, { value: ether(1) })).to.be
+          .reverted
+      })
+
+      it("by requiring minting of at least one token", async () => {
+        const ALLOW_MINTING_ON = Date.now().toString().slice(0, 10)
+        const NFT = await ethers.getContractFactory("NFT")
+        nft = await NFT.deploy(
+          NAME,
+          SYMBOL,
+          COST,
+          MAX_SUPPLY,
+          ALLOW_MINTING_ON,
+          BASE_URI
+        )
+
+        await expect(nft.connect(minter).mint(0, { value: COST })).to.be
+          .reverted
+      })
+    })
+  })
 })
