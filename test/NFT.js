@@ -95,6 +95,11 @@ describe("NFT", () => {
         expect(await nft.balanceOf(minter.address)).to.equal(1)
       })
 
+      it("returns token's uri", async () => {
+        // console.log(`${BASE_URI}1.json`)
+        expect(await nft.tokenURI(1)).to.equal(`${BASE_URI}1.json`)
+      })
+
       it("updates total supply", async () => {
         expect(await nft.totalSupply()).to.equal(1)
       })
@@ -176,6 +181,22 @@ describe("NFT", () => {
 
         await expect(nft.connect(minter).mint(100, { value: COST })).to.be
           .reverted
+      })
+
+      it("by rejecting uris for invalid tokens", async () => {
+        const ALLOW_MINTING_ON = Date.now().toString().slice(0, 10)
+        const NFT = await ethers.getContractFactory("NFT")
+        nft = await NFT.deploy(
+          NAME,
+          SYMBOL,
+          COST,
+          MAX_SUPPLY,
+          ALLOW_MINTING_ON,
+          BASE_URI
+        )
+        nft.connect(minter).mint(1, { value: COST })
+
+        await expect(nft.tokenURI("2")).to.be.reverted
       })
     })
   })
