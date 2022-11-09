@@ -11,7 +11,7 @@ const Data = ({ maxSupply, totalSupply, cost, balance }) => {
         ETH
       </p>
       <p className="text-center">
-        <strong>Your number of Feaux Punx:</strong> {balance.toString()}
+        <strong>Your number of Punx:</strong> {balance.toString()}
       </p>
     </div>
   )
