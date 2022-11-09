@@ -7,7 +7,7 @@
 const hre = require("hardhat")
 
 async function main() {
-  const NAME = "Feaux Punks"
+  const NAME = "Feaux Punx"
   const SYMBOL = "FAKE"
   const COST = hre.ethers.utils.parseUnits("10", "ether")
   const MAX_SUPPLY = 25
