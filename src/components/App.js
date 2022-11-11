@@ -110,14 +110,19 @@ function App() {
                 <img
                   src={preview}
                   alt="punx"
-                  className="my-4 text-center rounded mx-auto d-block "
+                  className="my-4 text-center rounded mx-auto d-block"
+                  data-bs-toggle="tooltip"
+                  title="Hunx & Punx preview!"
                 />
               )}
             </Col>
-            <Col className="border rounded bg-info">
-              <div className="my-4 text-center">
-                <Countdown date={parseInt(revealTime)} className="h2" />
-              </div>
+            <Col className="border rounded bg-info text-center d-flex flex-column justify-content-center m-5">
+              <p className="text-center p-4">
+                <Countdown
+                  date={parseInt(revealTime)}
+                  className="display-5 mb-4"
+                />
+              </p>
               <Data
                 maxSupply={maxSupply}
                 totalSupply={totalSupply}
@@ -129,6 +134,8 @@ function App() {
                 nft={nft}
                 cost={cost}
                 setIsLoading={setIsLoading}
+                maxSupply={maxSupply}
+                totalSupply={totalSupply}
               />
             </Col>
           </Row>

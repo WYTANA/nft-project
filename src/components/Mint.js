@@ -4,7 +4,16 @@ import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Spinner from "react-bootstrap/Spinner"
 
-const Mint = ({ provider, nft, cost, setIsLoading }) => {
+const Mint = ({
+  provider,
+  nft,
+  cost,
+  setIsLoading,
+  maxSupply,
+  totalSupply,
+}) => {
+  console.log("Max Supply: ", maxSupply.toString())
+  console.log("Total Supply", totalSupply.toString())
   const [amount, setAmount] = useState("0")
   const [isWaiting, setIsWaiting] = useState(false)
 
@@ -36,6 +45,8 @@ const Mint = ({ provider, nft, cost, setIsLoading }) => {
             animation="border"
             style={{ display: "block", margin: "0 auto" }}
           />
+        ) : maxSupply - totalSupply === 0 ? (
+          <h3 className="text-center alert alert-danger w-auto">SOLD OUT!</h3>
         ) : (
           <Form.Group>
             <Form.Control
@@ -55,3 +66,11 @@ const Mint = ({ provider, nft, cost, setIsLoading }) => {
 }
 
 export default Mint
+
+// {
+//   (maxSupply = 0 ? (
+//     <h1>Help</h1>
+//   ) : (
+
+//   ))
+//   }

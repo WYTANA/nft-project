@@ -3,9 +3,9 @@ const hre = require("hardhat")
 async function main() {
   const NAME = "Hunx & Punx"
   const SYMBOL = "FAKE"
-  const COST = hre.ethers.utils.parseUnits("10", "ether")
+  const COST = hre.ethers.utils.parseUnits("3", "ether")
   const MAX_SUPPLY = 25
-  const NFT_MINT_DATE = (Date.now() + 120000).toString().slice(0, 10)
+  const NFT_MINT_DATE = (Date.now() + 125000).toString().slice(0, 10)
   const IPFS_METADATA_URI =
     "ipfs://QmQ2jnDYecFhrf3asEWjyjZRX1pZSsNWG3qHzmNDvXa9qg/"
 
