@@ -1,10 +1,11 @@
 import { useState } from "react"
+// import { ethers } from "ethers"
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 import Spinner from "react-bootstrap/Spinner"
 
 const Mint = ({ provider, nft, cost, setIsLoading }) => {
-  // Spinner
+  const [amount, setAmount] = useState("0")
   const [isWaiting, setIsWaiting] = useState(false)
 
   const mintHandler = async (e) => {
@@ -13,7 +14,10 @@ const Mint = ({ provider, nft, cost, setIsLoading }) => {
 
     try {
       const signer = await provider.getSigner()
-      const transaction = await nft.connect(signer).mint(1, { value: cost })
+      const value = (amount * cost).toString()
+      const transaction = await nft
+        .connect(signer)
+        .mint(amount, { value: value })
       await transaction.wait()
     } catch (error) {
       window.alert("User rejected or transaction reverted!")
@@ -34,7 +38,13 @@ const Mint = ({ provider, nft, cost, setIsLoading }) => {
           />
         ) : (
           <Form.Group>
-            <Button variant="primary" type="submit" style={{ width: "100%" }}>
+            <Form.Control
+              className="my-2"
+              type="number"
+              placeholder="Add Punx to your gang!"
+              onChange={(e) => setAmount(e.target.value)}
+            />
+            <Button variant="warning" type="submit" style={{ width: "100%" }}>
               Mint
             </Button>
           </Form.Group>

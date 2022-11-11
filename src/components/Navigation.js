@@ -12,7 +12,7 @@ const Navigation = ({ account }) => {
         height="40"
         className="d-inline-block align-top mx-3 rounded-circle"
       />
-      <Navbar.Brand href="#">Feaux Punx</Navbar.Brand>
+      <Navbar.Brand href="#">Hunx & Punx</Navbar.Brand>
       <Navbar.Collapse className="justify-content-end">
         <Navbar.Text>{account}</Navbar.Text>
       </Navbar.Collapse>
