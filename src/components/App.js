@@ -4,6 +4,7 @@ import Countdown from "react-countdown"
 import { ethers } from "ethers"
 
 import preview from "../preview.png"
+import etherscan from "../logos/etherscan-logo-light.png"
 
 // Components
 import Navigation from "./Navigation"
@@ -92,11 +93,27 @@ function App() {
     <Container>
       <Navigation account={account} />
 
-      <h1 className="my-4 text-center">
+      <h1 className="my-2 text-center">
         Trade Hunx & Punx for Goerli Test Ether
       </h1>
       <br />
       <h4 className="my-4 text-center">Deal of the Decade!</h4>
+      <h4 className="my-4 text-center">
+        Verify on{" "}
+        <a
+          href="https://goerli.etherscan.io/address/0x9d82C3cd7A492Fe967909923bF607E4FE875ef66"
+          target="_blank"
+          rel="noreferrer"
+        >
+          {" "}
+          <img
+            src={etherscan}
+            alt="Etherscan logo"
+            width="190.05"
+            height="42.7"
+          />
+        </a>{" "}
+      </h4>
 
       {isLoading ? (
         <Loading />
