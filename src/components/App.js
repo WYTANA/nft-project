@@ -116,13 +116,28 @@ function App() {
                 />
               )}
             </Col>
-            <Col className="border rounded bg-info text-center d-flex flex-column justify-content-center m-5">
-              <p className="text-center p-4">
-                <Countdown
-                  date={parseInt(revealTime)}
-                  className="display-5 mb-4"
-                />
-              </p>
+            <Col className="border rounded bg-info text-center d-flex flex-column justify-content-center align-items-center m-5">
+              {revealTime - Date.now() > 0 ? (
+                <p className="text-center p-4">
+                  <Countdown
+                    date={parseInt(revealTime)}
+                    className="display-5 mb-4"
+                  />
+                </p>
+              ) : (
+                <>
+                  <h3 className="text-center alert alert-success w-50 p-2 mt-3">
+                    MINTING IS LIVE!
+                  </h3>
+                  {/* <p className="text-center p-4">
+                    <Countdown
+                      date={parseInt(revealTime)}
+                      className="display-5"
+                    />
+                  </p> */}
+                </>
+              )}
+
               <Data
                 maxSupply={maxSupply}
                 totalSupply={totalSupply}

@@ -12,8 +12,6 @@ const Mint = ({
   maxSupply,
   totalSupply,
 }) => {
-  console.log("Max Supply: ", maxSupply.toString())
-  console.log("Total Supply", totalSupply.toString())
   const [amount, setAmount] = useState("0")
   const [isWaiting, setIsWaiting] = useState(false)
 
@@ -46,7 +44,7 @@ const Mint = ({
             style={{ display: "block", margin: "0 auto" }}
           />
         ) : maxSupply - totalSupply === 0 ? (
-          <h3 className="text-center alert alert-danger w-auto">SOLD OUT!</h3>
+          <h3 className="text-center alert alert-danger w-100">SOLD OUT!</h3>
         ) : (
           <Form.Group>
             <Form.Control
@@ -55,7 +53,11 @@ const Mint = ({
               placeholder="Add Punx to your gang!"
               onChange={(e) => setAmount(e.target.value)}
             />
-            <Button variant="warning" type="submit" style={{ width: "100%" }}>
+            <Button
+              variant="warning"
+              type="submit"
+              style={{ width: "100%", fontSize: "24px", fontWeight: "bold" }}
+            >
               Mint
             </Button>
           </Form.Group>

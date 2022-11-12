@@ -2,7 +2,7 @@ import Carousel from "react-bootstrap/Carousel"
 
 const reactCarousel = ({ walletOfOwner }) => {
   return (
-    <Carousel fade>
+    <Carousel fade variant="dark">
       {walletOfOwner.map((wallet, index) => (
         <Carousel.Item key={index} interval={1000}>
           <img
